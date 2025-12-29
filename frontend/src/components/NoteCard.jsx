@@ -30,6 +30,10 @@ const NoteCard = ({ note, setNotes }) => {
       isLoading(false);
     }
   };
+
+  const handleUpdate = (e, noteId) => {
+    e.preventDefault();
+  };
   return (
     <Link
       to={`/note/${note._id}`}
@@ -43,7 +47,13 @@ const NoteCard = ({ note, setNotes }) => {
             {formatDate(new Date(note.createdAt))}
           </span>
           <div className="flex items-center gap-1">
-            <PenSquareIcon className="size-4" />
+            <button
+              className="btn btn-ghost btn-xs"
+              onClick={(e) => handleUpdate(e, note._id)}
+              disabled={loading}
+            >
+              <PenSquareIcon className="size-4" />
+            </button>
             <button
               className="btn btn-ghost btn-xs text-error"
               onClick={(e) => handleDelete(e, note._id)}
